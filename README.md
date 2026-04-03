@@ -5,8 +5,7 @@ React + Vite dashboard for the Gaia ESP32 hydroponics controller.
 ## Quick Start
 
 ```bash
-npm install
-npm run dev
+npm
 ```
 
 Then open http://localhost:5173
