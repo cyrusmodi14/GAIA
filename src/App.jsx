@@ -21,7 +21,7 @@ function hrs(n) {
 // ── Static pill data ──────────────────────────────────────────────────────────
 const PILL_DEFS = [
   { key: 'airTemp',   label: 'Air Temp',   unit: '°C',  bg: '#f4c87a', color: '#4a2800' },
-  { key: 'waterTemp', label: 'Water Temp', unit: '°C',  bg: '#7ac8f4', color: '#00293a' },
+  { key: 'waterDist', label: 'Water Dist', unit: 'cm',  bg: '#7ac8f4', color: '#00293a' },
   { key: 'tds',       label: 'TDS',        unit: 'ppm', bg: '#a8e87a', color: '#1a3a00' },
   { key: 'ph',        label: 'pH Level',   unit: 'pH',  bg: '#c87af4', color: '#2a0040' },
   { key: 'hum',       label: 'Humidity',   unit: '%',   bg: '#f4a07a', color: '#3a1200' },
@@ -29,7 +29,7 @@ const PILL_DEFS = [
 
 const SENSOR_DEFS = [
   { key: 'airTemp',   label: 'Air Temp',   unit: '°C',  accent: '#f4a030', status: 'ok'   },
-  { key: 'waterTemp', label: 'Water Temp', unit: '°C',  accent: '#4ab0f0', status: 'ok'   },
+  { key: 'waterDist', label: 'Water Dist', unit: 'cm',  accent: '#4ab0f0', status: 'ok'   },
   { key: 'tds',       label: 'TDS',        unit: 'ppm', accent: '#70c840', status: 'ok'   },
   { key: 'ph',        label: 'pH Level',   unit: '',    accent: '#a050e0', status: 'ok'   },
   { key: 'ec',        label: 'EC',         unit: 'mS',  accent: '#f07050', status: 'warn' },
@@ -37,7 +37,7 @@ const SENSOR_DEFS = [
 ]
 
 const DEFAULT_READINGS = {
-  airTemp: '24.2', waterTemp: '19.8', tds: '840',
+  airTemp: '24.2', waterDist: '—', tds: '840',
   ph: '6.2', ec: '1.68', light: '820', hum: '65',
 }
 
@@ -125,14 +125,16 @@ export default function App() {
 
   const handleWaterDist = () =>
     call('waterDist', api.measureWaterDist, (res) => {
-      // water distance → update waterTemp pill as proxy until you add a dedicated reading
-      showToast(`Water distance: ${res.trim()} cm`)
+      const val = parseFloat(res).toFixed(1)
+      const displayVal = `9.7-${val}`
+      setReadings(r => ({ ...r, waterDist: displayVal }))
+      showToast(`Water distance updated: ${displayVal} cm`)
     })
 
   const handleTemp = () =>
     call('temp', api.measureTemp, (res) => {
       const val = parseFloat(res).toFixed(1)
-      setReadings(r => ({ ...r, airTemp: val, waterTemp: val }))
+      setReadings(r => ({ ...r, airTemp: val }))
       showToast(`Temperature refreshed: ${val} °C`)
     })
 
