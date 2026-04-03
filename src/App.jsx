@@ -126,7 +126,7 @@ export default function App() {
   const handleWaterDist = () =>
     call('waterDist', api.measureWaterDist, (res) => {
       const val = parseFloat(res).toFixed(1)
-      const displayVal = `9.7-${val}`
+      const displayVal = 24.5-val
       setReadings(r => ({ ...r, waterDist: displayVal }))
       showToast(`Water distance updated: ${displayVal} cm`)
     })
