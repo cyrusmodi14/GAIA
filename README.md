@@ -14,10 +14,13 @@ Then open http://localhost:5173
 ## Server Build
 
 Connect the circuit as in the circuit diagram
+Do the normal setup for setting up arduino IDE for esp32
+Install ESP_Async_WebServer and Async_TCP libraries
+Change the variable values holding the wifi name and password
 Then upload the code onto the esp32
-change the variable values holding the wifi name and password
-The serial monitor prints the I.P> address once connected to the internet 
-THen change the I.P. in `vite.config.js`
+The serial monitor prints the I.P. address once connected to the internet 
+Then change the I.P. in `vite.config.js`
+
 ## ESP32 API Setup
 
 1. Open `vite.config.js` and change the proxy target to your ESP32's IP:
@@ -67,7 +70,7 @@ gaia-dashboard/
 ├── package.json
 ├── server              #the server setup
     ├──gaia.png         #circuit diagram
-    └──giaya.uno        #code to be uploaded onto esp32
+    └──gaia.ino        #code to be uploaded onto esp32
 └── src/
     ├── main.jsx        # React root
     ├── App.jsx         # Main dashboard component with all controls
