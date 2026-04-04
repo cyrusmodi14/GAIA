@@ -11,7 +11,14 @@ npm run dev
 
 Then open http://localhost:5173
 
-## ESP32 Setup
+## Server Build
+
+Connect the circuit as in the circuit diagram
+Then upload the code onto the esp32
+change the variable values holding the wifi name and password
+The serial monitor prints the I.P> address once connected to the internet 
+THen change the I.P. in `vite.config.js`
+## ESP32 API Setup
 
 1. Open `vite.config.js` and change the proxy target to your ESP32's IP:
 
@@ -58,6 +65,9 @@ gaia-dashboard/
 ├── index.html          # HTML entry, loads Chart.js CDN + Google Fonts
 ├── vite.config.js      # Vite config + dev proxy to ESP32
 ├── package.json
+├── server              #the server setup
+    ├──gaia.png         #circuit diagram
+    └──giaya.uno        #code to be uploaded onto esp32
 └── src/
     ├── main.jsx        # React root
     ├── App.jsx         # Main dashboard component with all controls
